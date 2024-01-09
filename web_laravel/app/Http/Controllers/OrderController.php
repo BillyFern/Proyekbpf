@@ -47,7 +47,7 @@ class OrderController extends Controller
         $retailer = Retailer::create([
             'retailers_name' => $request->retailer_name,
             'phone_number' => $request->phone_number,
-            'address' => $request->address
+            'retail_name' => $request->retail_name
         ]);
 
         $order = Order::create([
@@ -67,6 +67,7 @@ class OrderController extends Controller
         }
 
         if ($retailer && $order && $order_product) {
+            session()->flush();
             return redirect('/')->with(['success' => 'Barang anda telah diOrder']);
         } else {
             return redirect('/')->with(['error' => 'Barang anda gagal diOrder']);

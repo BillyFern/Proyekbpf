@@ -174,7 +174,7 @@
 											</div>
 										</div>
 										@endif
-										@break ($ifCounter == 10)
+										@break ($ifCounter == 8)
 										@endforeach
 									</div>
 								</div>
@@ -226,7 +226,7 @@
 								</div>
 							</div>
 						</div>
-						@break ($loop->iteration == 10)
+						@break ($loop->iteration == 8)
 						<!-- End Single Product -->
 						@endforeach
 					</div>
@@ -321,7 +321,7 @@
 		</div>
 	</div>
 	@endif
-	@break ($ifCounter == 10)
+	@break ($ifCounter == 8)
 	@endforeach
 	@endforeach
 	<!-- Modal end -->

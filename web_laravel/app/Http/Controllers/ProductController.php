@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
@@ -96,7 +97,8 @@ class ProductController extends Controller
     public function create()
     {
         //
-        return view('adminGMP.tambahProduk');
+        $user = Auth::user();
+        return view('adminGMP.tambahProduk', compact('user'));
     }
 
     /**

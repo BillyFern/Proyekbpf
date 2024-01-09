@@ -113,8 +113,8 @@
                                         <input type="number" placeholder="123456789000" class="form-control input-lg" name="phone_number" required>
                                     </div>
                                     <div class="form-col col-md-4">
-                                        <label>Alamat Retail</label>
-                                        <input type="text" placeholder="Alamat.." class="form-control input-lg" name="address" required>
+                                        <label>Nama Retail</label>
+                                        <input type="text" placeholder="Retail anda.." class="form-control input-lg" name="retail_name" required>
                                     </div>
                                 </div>
                             </div>
