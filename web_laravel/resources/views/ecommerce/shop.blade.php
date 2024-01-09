@@ -16,10 +16,7 @@
 									<ul class="nav main-menu menu navbar-nav">
 										<li><a href="{{ url('\\')}}">Home</a></li>
 										<li class="active"><a href="{{ url('shop')}}">Product</a></li>
-										<li><a href="#">About Us</a></li>
 										<li><a href="{{ url('order/create')}}">Cart</a></li>
-										</li>
-										<li><a href="contact.html">Contact Us</a></li>
 									</ul>
 								</div>
 							</div>

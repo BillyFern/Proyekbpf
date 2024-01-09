@@ -15,10 +15,8 @@
 									<ul class="nav main-menu menu navbar-nav">
 										<li class="active"><a href="#">Home</a></li>
 										<li><a href="{{ url('shop')}}">Product</a></li>
-										<li><a href="#">About Us</a></li>
 										<li><a href="{{ url('order/create')}}">Cart</a></li>
-										</li>
-										<li><a href="contact.html">Contact Us</a></li>
+										
 									</ul>
 								</div>
 							</div>
@@ -242,86 +240,89 @@
 
 	<!-- Modal -->
 	@foreach($category as $kategori)
-		@php
-			$ifCounter = 0;
-		@endphp
-		@foreach($product as $data)
-			@if($data->category == $kategori->category)
-				@php
-					$ifCounter += 1;
-				@endphp
-			<div class="modal fade" id="{{$data->product_name}}" tabindex="-1" role="dialog">
-				<div class="modal-dialog" role="document">
-					<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="ti-close" aria-hidden="true"></span></button>
+	@php
+	$ifCounter = 0;
+	@endphp
+	@foreach($product as $data)
+	@if($data->category == $kategori->category)
+	@php
+	$ifCounter += 1;
+	@endphp
+	<div class="modal fade" id="{{$data->product_name}}" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="ti-close" aria-hidden="true"></span></button>
+				</div>
+				<div class="modal-body">
+					<div class="row no-gutters">
+						<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+							<!-- Product Slider -->
+							<div class="product-gallery">
+								<img class="default-img" src="{{Storage::url('product/'.$data->file_name)}}" alt="#">
+							</div>
+							<!-- End Product slider -->
 						</div>
-						<div class="modal-body">
-							<div class="row no-gutters">
-								<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
-									<!-- Product Slider -->
-									<div class="product-gallery">
-										<img class="default-img" src="{{Storage::url('product/'.$data->file_name)}}" alt="#">
-									</div>
-									<!-- End Product slider -->
+						<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+							<div class="quickview-content">
+								<h2>{{$data->product_name}}</h2>
+								@if($data->status == "Tidak Habis")
+								<div class="quickview-stock">
+									<span><i class="fa fa-check-circle-o"></i> in stock</span>
 								</div>
-								<div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
-									<div class="quickview-content">
-										<h2>{{$data->product_name}}</h2>
-										@if($data->status == "Tidak Habis")
-										<div class="quickview-stock">
-											<span><i class="fa fa-check-circle-o"></i> in stock</span>
-										</div>
-										@else
-										<div class="quickview-stock">
-											<span><i class="fa-regular fa-circle-xmark"></i> stock habis </span>
-										</div>
-										@endif
-										<h3>Rp. {{$data->price}}</h3>
-										<div class="quickview-peragraph">
-											<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia iste laborum ad impedit pariatur esse optio tempora sint ullam autem deleniti nam in quos qui nemo ipsum numquam.</p>
-										</div>
-										<div class="size">
-											<div class="row">
-												<div class="col-lg-6 col-12">
-													<h5 class="title">Satuan</h5>
-													<select>
-														<option selected="selected" value="Pcs">Pcs</option>
-														<option value="lusin">lusin</option>
-													</select>
-												</div>
+								@else
+								<div class="quickview-stock">
+									<span><i class="fa-regular fa-circle-xmark"></i> stock habis </span>
+								</div>
+								@endif
+								<h3>Rp. {{$data->price}}</h3>
+								<div class="quickview-peragraph">
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia iste laborum ad impedit pariatur esse optio tempora sint ullam autem deleniti nam in quos qui nemo ipsum numquam.</p>
+								</div>
+
+								<form action="{{ route('addProduct.to.cart', $data->id)}}" method="">
+									<div class="size">
+										<div class="row">
+											<div class="col-lg-6 col-12">
+												<h5 class="title">Satuan</h5>
+												<select name="satuan">
+													<option selected="selected" value="pcs">pcs</option>
+													<option value="lusin">lusin</option>
+												</select>
 											</div>
 										</div>
-										<div class="quantity">
-											<!-- Input Order -->
-											<div class="input-group">
-												<div class="button minus">
-													<button type="button" class="btn btn-primary btn-number" disabled="disabled" data-type="minus" data-field="quant[1]">
-														<i class="ti-minus"></i>
-													</button>
-												</div>
-												<input type="text" name="quant[1]" class="input-number" data-min="1" data-max="1000" value="1">
-												<div class="button plus">
-													<button type="button" class="btn btn-primary btn-number" data-type="plus" data-field="quant[1]">
-														<i class="ti-plus"></i>
-													</button>
-												</div>
-											</div>
-											<!--/ End Input Order -->
-										</div>
-										<div class="add-to-cart">
-											<a href="#" class="btn">Add to cart</a>
-										</div>
 									</div>
-								</div>
+									<div class="quantity">
+										<!-- Input Order -->
+										<div class="input-group">
+											<div class="button minus">
+												<button type="button" class="btn btn-primary btn-number" disabled="disabled" data-type="minus" data-field="amount">
+													<i class="ti-minus"></i>
+												</button>
+											</div>
+											<input type="text" name="amount" class="input-number" data-min="1" data-max="1000" value="1">
+											<div class="button plus">
+												<button type="button" class="btn btn-primary btn-number" data-type="plus" data-field="amount">
+													<i class="ti-plus"></i>
+												</button>
+											</div>
+										</div>
+										<!--/ End Input Order -->
+									</div>
+									<div class="add-to-cart">
+										<button type="submit" class="btn">Add to cart</button>
+									</div>
+								</form>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			@endif
-			@break ($ifCounter == 10)
-		@endforeach
+		</div>
+	</div>
+	@endif
+	@break ($ifCounter == 10)
+	@endforeach
 	@endforeach
 	<!-- Modal end -->
-@endsection
+	@endsection
